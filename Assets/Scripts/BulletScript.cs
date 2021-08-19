@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
     private float x, z;
     private float bulletSpeed = 100.0f;
     private float bulletRange = 50f;
+    public GameObject effect;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,8 @@ public class BulletScript : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
+            var eff = Instantiate(effect, other.transform.position, Quaternion.identity);
+            Destroy(eff, 1f);
             Destroy(other.gameObject);
             GameManager.score++;
             Destroy(this.gameObject);
